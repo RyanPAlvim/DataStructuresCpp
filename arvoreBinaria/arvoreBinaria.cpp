@@ -20,6 +20,20 @@ Node* ArvoreBinaria::constroiPorNiveis(int vet[], int inicio, int fim){
     return p;
 }
 
+int ArvoreBinaria::profundidadeNo(int val){
+    return profundidadeNo(val, raiz, 0);
+}
+
+int ArvoreBinaria::profundidadeNo(int val, Node* p, int proAtual){
+
+   if(p == nullptr) return -1;
+   if(p->getInfo() == val) return proAtual;
+   int esq = profundidadeNo(val, p->getEsq(), proAtual + 1);
+   if(esq != -1) return esq;
+   return profundidadeNo(val, p->getDir(), proAtual + 1);
+   
+}
+
 ArvoreBinaria::~ArvoreBinaria(){
     destroi(raiz);
 }
