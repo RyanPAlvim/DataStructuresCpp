@@ -21,4 +21,6 @@ class ArvoreBinaria{
         void imprime();
         bool vazia();
         Node* busca(int val);
+        int contaNosComFilhos();
+        int contaNosComFilhos(Node* p);
 };

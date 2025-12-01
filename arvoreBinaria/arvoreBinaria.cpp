@@ -12,7 +12,7 @@ void ArvoreBinaria::constroi(int vet[], int tam){
 
 Node* ArvoreBinaria::constroiPorNiveis(int vet[], int inicio, int fim){
 
-    if(inicio >= fim) return nullptr;
+    if(inicio > fim) return nullptr;
 
     Node* p = new Node(vet[inicio]);
     p->setEsq(constroiPorNiveis(vet, 2*inicio + 1, fim));
@@ -61,6 +61,18 @@ void ArvoreBinaria::imprimePosOrdem(Node* p){
     imprimePreOrdem(p->getEsq());
     imprimePreOrdem(p->getDir()); 
     cout << p->getInfo() << " ";
+}
+
+int ArvoreBinaria::contaNosComFilhos(){
+    return contaNosComFilhos(raiz);
+}
+
+int ArvoreBinaria::contaNosComFilhos(Node* p){
+    if(p == nullptr) return 0;
+    if(p->getDir() != nullptr || p->getEsq() != nullptr){
+        return contaNosComFilhos(p->getEsq()) + contaNosComFilhos(p->getDir()) + 1;
+    }
+    return 0;
 }
 
 Node* ArvoreBinaria::getRaiz(){
