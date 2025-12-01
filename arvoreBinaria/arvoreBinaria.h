@@ -25,4 +25,5 @@ class ArvoreBinaria{
         int contaNosComFilhos(Node* p);
         int profundidadeNo(int val);
         int profundidadeNo(int val, Node* p, int proAtual);
+        void imprimeLargura();
 };

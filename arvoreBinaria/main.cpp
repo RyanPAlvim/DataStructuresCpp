@@ -12,5 +12,6 @@ int main(){
     arv->constroi(vet, TAM);
 
     cout << arv->contaNosComFilhos() << endl;
-    cout << arv->profundidadeNo(10);
+    cout << arv->profundidadeNo(10) << endl;
+    arv->imprimeLargura();
 }

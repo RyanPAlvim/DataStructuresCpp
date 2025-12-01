@@ -1,4 +1,5 @@
 #include "arvoreBinaria.h"
+#include <queue>
 #include <iostream>
 using namespace std;
 
@@ -32,6 +33,23 @@ int ArvoreBinaria::profundidadeNo(int val, Node* p, int proAtual){
    if(esq != -1) return esq;
    return profundidadeNo(val, p->getDir(), proAtual + 1);
    
+}
+
+void ArvoreBinaria::imprimeLargura(){
+    queue<Node*> fila;
+    if(raiz != nullptr){
+        fila.push(raiz);
+        while(!fila.empty()){
+            if(fila.front()->getEsq() != nullptr){
+                fila.push(fila.front()->getEsq());
+            }
+            if(fila.front()->getDir() != nullptr){
+                fila.push(fila.front()->getDir());
+            }
+            cout << fila.front()->getInfo() << " ";
+            fila.pop();
+        }
+    }
 }
 
 ArvoreBinaria::~ArvoreBinaria(){

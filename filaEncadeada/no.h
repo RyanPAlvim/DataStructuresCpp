@@ -11,4 +11,4 @@ public:
     Node(int val, Node* nextNode);
 };
 
-#endif // NODE_H
+#endif
