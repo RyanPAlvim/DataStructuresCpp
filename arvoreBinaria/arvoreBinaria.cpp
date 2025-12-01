@@ -1,0 +1,84 @@
+#include "arvoreBinaria.h"
+#include <iostream>
+using namespace std;
+
+ArvoreBinaria::ArvoreBinaria(){
+    raiz = nullptr;
+}
+
+void ArvoreBinaria::constroi(int vet[], int tam){
+    raiz = constroiPorNiveis(vet, 0, tam - 1);
+}
+
+Node* ArvoreBinaria::constroiPorNiveis(int vet[], int inicio, int fim){
+
+    if(inicio >= fim) return nullptr;
+
+    Node* p = new Node(vet[inicio]);
+    p->setEsq(constroiPorNiveis(vet, 2*inicio + 1, fim));
+    p->setDir(constroiPorNiveis(vet, 2*inicio + 2, fim));
+    return p;
+}
+
+ArvoreBinaria::~ArvoreBinaria(){
+    destroi(raiz);
+}
+
+void ArvoreBinaria::destroi(Node* p){
+    if(p != nullptr){
+        destroi(p->getEsq());
+        destroi(p->getDir());
+        delete p;
+    }
+}
+
+void ArvoreBinaria::imprime(){
+    imprimePreOrdem(raiz);
+}
+
+void ArvoreBinaria::imprimePreOrdem(Node* p){
+    if(p == nullptr){
+        return;
+    }
+    cout << p->getInfo() << " ";
+    imprimePreOrdem(p->getEsq());
+    imprimePreOrdem(p->getDir()); 
+}
+
+void ArvoreBinaria::imprimeEmOrdem(Node* p){
+    if(p == nullptr){
+        return;
+    }
+    imprimePreOrdem(p->getEsq());
+    cout << p->getInfo() << " ";
+    imprimePreOrdem(p->getDir()); 
+}
+
+void ArvoreBinaria::imprimePosOrdem(Node* p){
+    if(p == nullptr){
+        return;
+    }
+    imprimePreOrdem(p->getEsq());
+    imprimePreOrdem(p->getDir()); 
+    cout << p->getInfo() << " ";
+}
+
+Node* ArvoreBinaria::getRaiz(){
+    return raiz;
+}
+
+bool ArvoreBinaria::vazia(){
+    return raiz == nullptr;
+}
+
+Node* ArvoreBinaria::busca(int val){
+    return busca(val, raiz);
+}
+
+Node* ArvoreBinaria::busca(int val, Node* p){
+    if(p == nullptr) return nullptr;
+    if(p->getInfo() == val) return p;
+    Node* noEsq = busca(val, p->getEsq());
+    if(noEsq != nullptr) return noEsq;
+    return busca(val, p->getDir());
+}
