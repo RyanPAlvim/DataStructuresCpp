@@ -51,9 +51,28 @@ void ArvoreBinaria::imprimeLargura(){
         }
     }
 }
-
+// Propriedades:
+// Se os filhos da raiz são ambos nulls, ela é simétrica
+// Se um filha da raiz é null e outro não, ela não é
+// Caso os dois filhos da raiz tenha o mesmo valor, ela é simétrica
 bool ArvoreBinaria::simetrica(){
-    
+
+    if(raiz == nullptr) return true;
+
+    return auxSimetrica(raiz->getEsq(), raiz->getDir());
+}
+
+bool ArvoreBinaria::auxSimetrica(Node* esq, Node* dir){
+
+    if(esq == nullptr && dir == nullptr) return true;
+
+    if(esq == nullptr || dir == nullptr) return false;
+
+    return(
+    esq->getInfo() == dir->getInfo() && 
+    auxSimetrica(esq->getEsq(), dir->getDir()) && 
+    auxSimetrica(esq->getDir(), dir->getEsq())
+    );
 }
 
 ArvoreBinaria::~ArvoreBinaria(){
