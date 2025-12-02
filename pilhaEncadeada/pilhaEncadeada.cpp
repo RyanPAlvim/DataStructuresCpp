@@ -31,11 +31,11 @@ void PilhaEncadeada<T>::empilha(T val){
 template<typename T>
 T PilhaEncadeada<T>::desempilha(){
     if(vazia()){
-        return -1;
+        throw runtime_error("Pilha vazia!");
     }
 
     No<T>* aux = topo;
-    int auxVal = aux->getInfo();
+    T auxVal = aux->getInfo();
 
     topo = topo->getProx();
 
@@ -61,7 +61,7 @@ template<typename T>
 void PilhaEncadeada<T>::adicionaFundo(T val){
     if(vazia()) empilha(val);
     else{
-        int x = desempilha();
+        T x = desempilha();
         adicionaFundo(val);
         empilha(x);
     }
@@ -71,7 +71,7 @@ template<typename T>
 void PilhaEncadeada<T>::inverte(){
     if(vazia()) return;
 
-    int x = desempilha();
+    T x = desempilha();
     inverte();
     adicionaFundo(x);
 }
@@ -79,23 +79,42 @@ void PilhaEncadeada<T>::inverte(){
 template<typename T>
 bool PilhaEncadeada<T>::verificaParentesis(char str[]){
     
+    PilhaEncadeada<char> pilha;
+    int i = 0;
+
+    while(str[i] != '\0'){
+        if(str[i] == '(' || str[i] == '{' || str[i] == '['){
+            pilha.empilha(str[i]);
+        }
+        else if(str[i] == ')' || str[i] == '}' || str[i] == ']'){
+            if(pilha.vazia()) return false;
+
+            char topo = pilha.desempilha();
+
+            if((str[i] == ')' && topo != '(') ||
+               (str[i] == '}' && topo != '{') ||
+               (str[i] == ']' && topo != '['))
+                return false;
+        }
+        i++;
+    }
+    return pilha.vazia();
 }
 
 template<typename T>
 int PilhaEncadeada<T>::somaAlternada(){
 
-    PilhaEncadeada<int> aux;
+    PilhaEncadeada<int> pilha;
     int soma = 0;
     int sinal = 1;
-    while(!this->vazia()){
-        int x = this->desempilha();
-        soma += sinal*x;
-        sinal *= -1;
-        aux.empilha(x);
+    while(!vazia()){
+        int x = desempilha();
+        pilha.empilha(x);
+        soma += x * sinal;
+        sinal *= =1;
     }
-    while(!aux.vazia()) this->empilha(aux.desempilha());
-    return soma;
-
+    while(!pilha.vazia())
+        empilha(pilha.desempilha());
 }
 
 template<typename T>

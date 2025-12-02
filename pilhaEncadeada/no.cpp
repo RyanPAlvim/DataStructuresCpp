@@ -12,7 +12,7 @@ template<typename T>
 T No<T>::getInfo(){ return val; }
 
 template<typename T>
-void No<T>::setProx(No* p){ this->next = p; }
+void No<T>::setProx(No<T>* p){ this->next = p; }
 
 template<typename T>
 No<T>* No<T>::getProx(){ return next; }

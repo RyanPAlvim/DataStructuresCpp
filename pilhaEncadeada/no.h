@@ -6,11 +6,11 @@ class No{
 
     private:
         T val;
-        No* next;
+        No<T>* next;
 
     public:
         No(T val);
-        No* getProx();
+        No<T>* getProx();
         void setProx(No* p);
         T getInfo();
 

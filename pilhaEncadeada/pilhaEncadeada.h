@@ -18,6 +18,6 @@ class PilhaEncadeada{
         void getInfo();
         void adicionaFundo(T val);
         void inverte();
-        int somaAlternada() requires same_as<T, int>;
-        bool verificaParentesis(char str[]) requires same_as<T, char>;
+        int somaAlternada();
+        bool verificaParentesis(char str[]);
 };

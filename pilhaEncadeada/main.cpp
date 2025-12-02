@@ -6,6 +6,9 @@ using namespace std;
 int main(){
 
     PilhaEncadeada<char> pilha;
+    char vet[8] = "({1+1})";
+
+    cout << pilha.verificaParentesis(vet) << endl;
 
     pilha.empilha('a');
     pilha.empilha('b');
