@@ -2,13 +2,17 @@
 #include "no.h"
 using namespace std;
 
-No::No(int val){
+template<typename T>
+No<T>::No(T val){
     this->val = val;
     next = nullptr;
 }
 
-int No::getInfo(){ return val; }
+template<typename T>
+T No<T>::getInfo(){ return val; }
 
-void No::setProx(No* p){ this->next = p; }
+template<typename T>
+void No<T>::setProx(No* p){ this->next = p; }
 
-No* No::getProx(){ return next; }
+template<typename T>
+No<T>* No<T>::getProx(){ return next; }

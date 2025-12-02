@@ -5,19 +5,21 @@ using namespace std;
 
 int main(){
 
-    PilhaEncadeada pilha;
+    PilhaEncadeada<char> pilha;
 
-    pilha.empilha(10);
-    pilha.empilha(12);
-    pilha.empilha(4);
-
-    pilha.getInfo();
-
-    pilha.desempilha();
+    pilha.empilha('a');
+    pilha.empilha('b');
+    pilha.empilha('c');
 
     pilha.getInfo();
 
-    pilha.adicionaFundo(10);
+    pilha.getInfo();
+
+    pilha.adicionaFundo('d');
+
+    pilha.getInfo();
+
+    pilha.inverte();
 
     pilha.getInfo();
 }

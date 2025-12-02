@@ -1,16 +1,17 @@
 #pragma once
 #define NO_H
 
+template <typename T>
 class No{
 
     private:
-        int val;
+        T val;
         No* next;
 
     public:
-        No(int val);
+        No(T val);
         No* getProx();
         void setProx(No* p);
-        int getInfo();
+        T getInfo();
 
 };

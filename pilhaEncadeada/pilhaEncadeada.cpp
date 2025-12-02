@@ -2,15 +2,17 @@
 #include <iostream>
 using namespace std;
 
-PilhaEncadeada::PilhaEncadeada(){
+template<typename T>
+PilhaEncadeada<T>::PilhaEncadeada(){
 
     topo = nullptr;
 
 }
 
-PilhaEncadeada::~PilhaEncadeada(){
+template<typename T>
+PilhaEncadeada<T>::~PilhaEncadeada(){
 
-    No* aux = topo;
+    No<T>* aux = topo;
 
     while(topo->getProx() != nullptr){
         topo = topo->getProx();
@@ -19,18 +21,20 @@ PilhaEncadeada::~PilhaEncadeada(){
     }
 }
 
-void PilhaEncadeada::empilha(int val){
-    No* newTop = new No(val);
+template<typename T>
+void PilhaEncadeada<T>::empilha(T val){
+    No<T>* newTop = new No(val);
     newTop->setProx(topo);
     topo = newTop;
 }
 
-int PilhaEncadeada::desempilha(){
+template<typename T>
+T PilhaEncadeada<T>::desempilha(){
     if(vazia()){
         return -1;
     }
 
-    No* aux = topo;
+    No<T>* aux = topo;
     int auxVal = aux->getInfo();
 
     topo = topo->getProx();
@@ -39,7 +43,8 @@ int PilhaEncadeada::desempilha(){
     return auxVal;
 }
 
-int PilhaEncadeada::getTopo(){
+template<typename T>
+T PilhaEncadeada<T>::getTopo(){
     if(vazia()){
         return -1;
     }
@@ -47,22 +52,39 @@ int PilhaEncadeada::getTopo(){
     return topo->getInfo();
 }
 
-bool PilhaEncadeada::vazia(){
+template<typename T>
+bool PilhaEncadeada<T>::vazia(){
     return topo == nullptr;
 }
 
-void PilhaEncadeada::adicionaFundo(int val){
+template<typename T>
+void PilhaEncadeada<T>::adicionaFundo(T val){
     if(vazia()) empilha(val);
     else{
         int x = desempilha();
-        adicionaFundo(x);
+        adicionaFundo(val);
         empilha(x);
     }
 }
 
-int PilhaEncadeada::somaAlternada(){
+template<typename T>
+void PilhaEncadeada<T>::inverte(){
+    if(vazia()) return;
 
-    PilhaEncadeada aux;
+    int x = desempilha();
+    inverte();
+    adicionaFundo(x);
+}
+
+template<typename T>
+bool PilhaEncadeada<T>::verificaParentesis(char str[]){
+    
+}
+
+template<typename T>
+int PilhaEncadeada<T>::somaAlternada(){
+
+    PilhaEncadeada<int> aux;
     int soma = 0;
     int sinal = 1;
     while(!this->vazia()){
@@ -76,8 +98,9 @@ int PilhaEncadeada::somaAlternada(){
 
 }
 
-void PilhaEncadeada::getInfo(){
-    No* aux = topo;
+template<typename T>
+void PilhaEncadeada<T>::getInfo(){
+    No<T>* aux = topo;
 
     while(aux != nullptr){
         cout << aux->getInfo() << (aux->getProx() == nullptr ? "." : ", ");
