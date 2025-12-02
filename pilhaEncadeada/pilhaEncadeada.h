@@ -15,4 +15,6 @@ class PilhaEncadeada{
         int desempilha();
         bool vazia();
         void getInfo();
+        void adicionaFundo(int val);
+        int somaAlternada();
 };

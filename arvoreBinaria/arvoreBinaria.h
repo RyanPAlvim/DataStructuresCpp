@@ -26,4 +26,5 @@ class ArvoreBinaria{
         int profundidadeNo(int val);
         int profundidadeNo(int val, Node* p, int proAtual);
         void imprimeLargura();
+        bool simetrica();
 };

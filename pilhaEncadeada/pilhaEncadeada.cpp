@@ -51,6 +51,31 @@ bool PilhaEncadeada::vazia(){
     return topo == nullptr;
 }
 
+void PilhaEncadeada::adicionaFundo(int val){
+    if(vazia()) empilha(val);
+    else{
+        int x = desempilha();
+        adicionaFundo(x);
+        empilha(x);
+    }
+}
+
+int PilhaEncadeada::somaAlternada(){
+
+    PilhaEncadeada aux;
+    int soma = 0;
+    int sinal = 1;
+    while(!this->vazia()){
+        int x = this->desempilha();
+        soma += sinal*x;
+        sinal *= -1;
+        aux.empilha(x);
+    }
+    while(!aux.vazia()) this->empilha(aux.desempilha());
+    return soma;
+
+}
+
 void PilhaEncadeada::getInfo(){
     No* aux = topo;
 

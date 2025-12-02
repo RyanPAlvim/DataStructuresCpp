@@ -52,6 +52,10 @@ void ArvoreBinaria::imprimeLargura(){
     }
 }
 
+bool ArvoreBinaria::simetrica(){
+    
+}
+
 ArvoreBinaria::~ArvoreBinaria(){
     destroi(raiz);
 }
