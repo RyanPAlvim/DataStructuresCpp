@@ -20,4 +20,5 @@ class PilhaEncadeada{
         void inverte();
         int somaAlternada();
         bool verificaParentesis(char str[]);
+        void removeIntervalo(int a, int b);
 };

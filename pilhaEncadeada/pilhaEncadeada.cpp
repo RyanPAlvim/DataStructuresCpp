@@ -118,6 +118,25 @@ int PilhaEncadeada<T>::somaAlternada(){
 }
 
 template<typename T>
+void PilhaEncadeada<T>::removeIntervalo(int a, int b){
+
+    PilhaEncadeada<int> pilha;
+
+    while(!vazia())
+        pilha.empilha(desempilha());
+    
+
+    while(!pilha.vazia()){
+
+        int x = pilha.desempilha();
+
+        if(x < a || cont > x){
+            empilha(x);
+        }
+    }
+}
+
+template<typename T>
 void PilhaEncadeada<T>::getInfo(){
     No<T>* aux = topo;
 
